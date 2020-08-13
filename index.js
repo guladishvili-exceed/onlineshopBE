@@ -241,10 +241,11 @@ app.post(`/upload/:id`,(req,res)=>{
 //Items Section
 
 //Create new item to sell
-app.post('/additem',(req,res)=>{
+app.post('/additem/:id',(req,res)=>{
 	Items.create({
 		itemname: req.body.itemname,
 		author: req.body.author,
+		authorid: req.params.id,
 		price: req.body.price,
 	})
 		.then((result) => {
@@ -267,7 +268,6 @@ app.post(`/itemPhotos/:id`,(req,res)=>{
 				})
 			} else {
 				Items.update({
-					authorid:req.params.id,
 					picture1: req.file.filename,
 					picture2: req.file.filename,
 					picture3: req.file.filename,
@@ -275,7 +275,7 @@ app.post(`/itemPhotos/:id`,(req,res)=>{
 				},
 					{
 						where : {
-							id : req.params.id
+							itemid : req.params.id
 						}
 					})
 				res.json({

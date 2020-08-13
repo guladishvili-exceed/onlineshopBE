@@ -11,12 +11,14 @@ const Items = db.define('items',{
 	},
 	authorid : {
 		type: Sequelize.INTEGER,
-		foreignKey : {
-			references : Users.id
-		}
+		foreignKey : true,
+		references:Users.id
 	},
 	itemname : {
 		type: Sequelize.STRING
+	},
+	price : {
+		type : Sequelize.STRING
 	},
 	author : {
 		type: Sequelize.STRING
